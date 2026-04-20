@@ -1,11 +1,29 @@
 [
     {
         "nama": "kilua",
-        "nik": "01234567891234567",
-        "alamat": "jl.pepaya",
-        "kota": "Bandung",
+        "nik": "1234567890123456",
+        "alamat": "Jl.Pepaya",
+        "kota": "Surabaya",
         "hp": "081252145113",
-        "pekerjaan": "cv.greatcode",
-        "tanggal_register": "2026-04-20 10:01:04"
+        "pekerjaan": "kuli",
+        "tanggal_register": "2026-04-20 10:30:58"
+    },
+    {
+        "nama": "Savira",
+        "nik": "3276011209980003",
+        "alamat": "Jl.Kampung Baru",
+        "kota": "Pandaan",
+        "hp": "085645123481",
+        "pekerjaan": "Guru",
+        "tanggal_register": "2026-04-20 12:58:26"
+    },
+    {
+        "nama": "Ika",
+        "nik": "3578121503990001",
+        "alamat": "Jl.pantimura",
+        "kota": "Pandaan",
+        "hp": "08563586735",
+        "pekerjaan": "Guru",
+        "tanggal_register": "2026-04-20 12:59:33"
     }
 ]

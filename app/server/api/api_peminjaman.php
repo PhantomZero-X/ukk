@@ -192,6 +192,50 @@ function ambilDataByNIK($nik) {
 
 /**
  * =========================================================================
+ * FUNGSI CEK DUPLIKAT: cekDuplikatData()
+ * -------------------------------------------------------------------------
+ * Fungsi untuk mengecek apakah data sudah terdaftar (duplikat).
+ * Digunakan untuk validasi input di pinjaman.php.
+ * 
+ * Parameter:
+ *   - $nik  : NIK yang akan dicek
+ *   - $hp   : Nomor HP yang akan dicek
+ *   - $nama : Nama yang akan dicek
+ * 
+ * Return:
+ *   - array ['field' => 'nik/hp/nama', 'value' => 'nilai'] : Jika duplikat ditemukan
+ *   - null : Jika tidak ada duplikat
+ * =========================================================================
+ */
+function cekDuplikatData($nik, $hp, $nama) {
+    $filePath = __DIR__ . '/../data/peminjam.csv';
+    if (!file_exists($filePath)) return null;
+
+    if (($handle = fopen($filePath, "r")) !== FALSE) {
+        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+            // Cek NIK (case-insensitive)
+            if (strcasecmp($data[1], $nik) === 0) {
+                fclose($handle);
+                return ['field' => 'NIK', 'value' => $nik];
+            }
+            // Cek No HP (case-insensitive)
+            if (strcasecmp($data[4], $hp) === 0) {
+                fclose($handle);
+                return ['field' => 'No. HP', 'value' => $hp];
+            }
+            // Cek Nama (case-insensitive)
+            if (strcasecmp($data[0], $nama) === 0) {
+                fclose($handle);
+                return ['field' => 'Nama', 'value' => $nama];
+            }
+        }
+        fclose($handle);
+    }
+    return null;
+}
+
+/**
+ * =========================================================================
  * FUNGSI UPDATE: updateDataPeminjam()
  * -------------------------------------------------------------------------
  * Fungsi untuk mengupdate data peminjam yang sudah ada berdasarkan NIK.

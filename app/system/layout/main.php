@@ -39,7 +39,11 @@ if (isset($_GET['page']) && $_GET['page'] === 'history' && isset($_GET['action']
         fputcsv($output, ['No', 'Nama Lengkap', 'NIK', 'Alamat', 'Kota', 'No. HP', 'Pekerjaan', 'Tanggal Register']);
         $no = 1;
         foreach ($data as $row) {
-            fputcsv($output, [$no++, $row['nama'], $row['nik'], $row['alamat'], $row['kota'], $row['hp'], $row['pekerjaan'], $row['tanggal']]);
+            // Tambahkan apostrof (') di depan NIK dan No HP agar Excel membaca sebagai TEXT
+            // Ini mencegah Excel mengubah angka panjang ke format Scientific (E+15)
+            $nik_text = "'" . $row['nik'];
+            $hp_text = "'" . $row['hp'];
+            fputcsv($output, [$no++, $row['nama'], $nik_text, $row['alamat'], $row['kota'], $hp_text, $row['pekerjaan'], $row['tanggal']]);
         }
         fclose($output);
         exit;

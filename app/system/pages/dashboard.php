@@ -95,6 +95,7 @@ $limitData = array_slice($allData, 0, 5);
         <table id="tabelDashboard" class="w-full text-left">
             <thead class="bg-slate-900 text-white">
                 <tr>
+                    <th class="p-3 text-[11px] uppercase font-bold tracking-widest w-10">No</th>
                     <th class="p-3 text-[11px] uppercase font-bold tracking-widest">Nama Peminjam</th>
                     <th class="p-3 text-[11px] uppercase font-bold tracking-widest">Asal Kota</th>
                     <th class="p-3 text-[11px] uppercase font-bold tracking-widest">Tanggal Register</th>
@@ -103,11 +104,12 @@ $limitData = array_slice($allData, 0, 5);
             <tbody class="divide-y divide-slate-100">
                 <?php if(empty($limitData)): ?>
                     <tr>
-                        <td colspan="3" class="p-10 text-center text-slate-400 text-sm italic">Belum ada aktivitas peminjaman.</td>
+                        <td colspan="4" class="p-10 text-center text-slate-400 text-sm italic">Belum ada aktivitas peminjaman.</td>
                     </tr>
                 <?php else: ?>
-                    <?php foreach($limitData as $item): ?>
+                    <?php $no = 1; foreach($limitData as $item): ?>
                     <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="p-3 text-sm text-slate-500 font-mono"><?= $no++ ?></td>
                         <td class="p-3 text-sm font-semibold text-slate-800"><?= htmlspecialchars($item['nama']) ?></td>
                         <td class="p-3">
                             <span class="text-xs bg-slate-100 px-2 py-1 text-slate-600 border border-slate-200"><?= htmlspecialchars($item['kota']) ?></span>
