@@ -31,14 +31,32 @@ function simpanDataPeminjam($data_array) {
     // [STEP 1] Cek dan buat folder data jika belum ada
     // Permission 0755: owner bisa read/write/execute, group & others read/execute
     if (!is_dir($data_dir)) {
-        if (!mkdir($data_dir, 0755, true)) {
-            return "Gagal membuat folder data. Cek permission.";
+        // Coba buat folder dengan permission 0755
+        if (!@mkdir($data_dir, 0755, true)) {
+            // Jika gagal, coba dengan permission 0777 (full access)
+            if (!@mkdir($data_dir, 0777, true)) {
+                // Dapatkan informasi user dan permission untuk debug
+                $current_user = function_exists('posix_getpwuid') ? posix_getpwuid(posix_geteuid())['name'] : get_current_user();
+                $parent_perms = @fileperms(dirname($data_dir));
+                $parent_perms_str = ($parent_perms !== false) ? substr(sprintf('%o', $parent_perms), -4) : 'unknown';
+                
+                return "Gagal membuat folder data.\n" .
+                       "Path: $data_dir\n" .
+                       "User: $current_user\n" .
+                       "Permission folder parent: $parent_perms_str\n" .
+                       "Solusi: Jalankan 'chmod -R 777 " . dirname($data_dir) . "' atau buat folder manual.";
+            }
         }
     }
 
     // [STEP 2] Cek apakah folder writable (bisa ditulis)
     if (!is_writable($data_dir)) {
-        return "Folder data tidak writable. Cek permission folder.";
+        // Coba ubah permission folder menjadi writable
+        if (!@chmod($data_dir, 0777)) {
+            return "Folder data tidak writable dan tidak bisa diubah permission-nya.\n" .
+                   "Path: $data_dir\n" .
+                   "Solusi: Jalankan 'chmod -R 777 $data_dir'";
+        }
     }
 
     // [STEP 3] Tambahkan timestamp registrasi otomatis

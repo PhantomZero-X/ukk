@@ -85,8 +85,8 @@ $limitData = array_slice($allData, 0, 5);
 <div class="bg-white border border-slate-200 shadow-sm overflow-hidden">
     <div class="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
         <div>
-            <h3 class="font-bold text-slate-800 text-sm uppercase tracking-wider">5 Aktivitas Terbaru</h3>
-            <p class="text-[10px] text-slate-400 uppercase">Data diurutkan berdasarkan tanggal register terakhir</p>
+            <h3 class="font-bold text-slate-800 text-sm uppercase tracking-wider">Data Pinjaman</h3>
+            <p class="text-[10px] text-slate-400 uppercase">Data peminjam mobil terdaftar dalam sistem</p>
         </div>
         <a href="?page=history" class="text-[11px] font-bold text-blue-600 hover:text-blue-800 transition-colors uppercase tracking-widest">Lihat Semua &rarr;</a>
     </div>

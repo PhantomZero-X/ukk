@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <!-- [FIELD 2] NIK - type text dengan validasi min 16 karakter -->
         <div>
-            <label class="block text-sm font-medium mb-1">NIK (Min. 16 Karakter)</label>
+            <label class="block text-sm font-medium mb-1">NIK (16 Karakter)</label>
             <input type="text" name="nik" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-400 outline-none" required>
         </div>
         

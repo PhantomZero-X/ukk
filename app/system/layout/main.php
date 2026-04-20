@@ -83,7 +83,7 @@ if (isset($_GET['page']) && $_GET['page'] === 'history' && isset($_GET['action']
     
     <meta name="description" content="WheelFlow - Sistem Manajemen Rental Mobil Efisien dan Modern">
     <meta name="author" content="KomiDev">
-    <title>WheelFlow | Solusi Rental Mobil Modern</title>
+    <title>RentCart</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
