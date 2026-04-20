@@ -174,11 +174,31 @@ $allData = ambilSemuaData();
 </style>
 
 <!-- ==========================================================================
-     HEADER HALAMAN
+     HEADER HALAMAN dengan Tombol Export
      ========================================================================== -->
 <div class="flex justify-between items-center mb-6">
     <h2 class="text-3xl font-semibold text-slate-800">Riwayat Peminjaman</h2>
-    <div class="text-xs text-gray-500 font-mono">Storage: CSV & JSON</div>
+    
+    <!-- ==========================================================================
+         TOMBOL EXPORT CSV & TXT
+         Fungsi: Mengarahkan ke handler export di main.php
+         URL: ?page=history&action=export_csv atau ?page=history&action=export_txt
+         Handler: /opt/lampp/htdocs/RentCar/app/system/layout/main.php (baris 28-51)
+         ========================================================================== -->
+    <div class="flex gap-2">
+        <a href="?page=history&action=export_csv" class="flex items-center gap-2 px-4 py-2 bg-green-600 text-white text-sm font-medium hover:bg-green-700 transition" title="Export ke CSV">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            CSV
+        </a>
+        <a href="?page=history&action=export_txt" class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition" title="Export ke TXT">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            TXT
+        </a>
+    </div>
 </div>
 
 <!-- ==========================================================================
