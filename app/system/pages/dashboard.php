@@ -92,29 +92,27 @@ $limitData = array_slice($allData, 0, 5);
     </div>
     
     <div class="p-6">
-        <table id="tabelDashboard" class="w-full text-left">
-            <thead class="bg-slate-900 text-white">
+        <table id="tabelDashboard" class="w-full text-left cell-border stripe">
+            <thead class="bg-slate-800 text-white">
                 <tr>
-                    <th class="p-3 text-[11px] uppercase font-bold tracking-widest w-10">No</th>
-                    <th class="p-3 text-[11px] uppercase font-bold tracking-widest">Nama Peminjam</th>
-                    <th class="p-3 text-[11px] uppercase font-bold tracking-widest">Asal Kota</th>
-                    <th class="p-3 text-[11px] uppercase font-bold tracking-widest">Tanggal Register</th>
+                    <th class="p-3 text-xs uppercase font-bold text-center">No</th>
+                    <th class="p-3 text-xs uppercase font-bold">Nama</th>
+                    <th class="p-3 text-xs uppercase font-bold text-center">Asal Kota</th>
+                    <th class="p-3 text-xs uppercase font-bold">Register</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-slate-100">
+            <tbody class="divide-y divide-gray-200">
                 <?php if(empty($limitData)): ?>
                     <tr>
-                        <td colspan="4" class="p-10 text-center text-slate-400 text-sm italic">Belum ada aktivitas peminjaman.</td>
+                        <td colspan="4" class="p-10 text-center text-gray-400 text-sm italic">Belum ada aktivitas peminjaman.</td>
                     </tr>
                 <?php else: ?>
                     <?php $no = 1; foreach($limitData as $item): ?>
                     <tr class="hover:bg-slate-50 transition-colors">
-                        <td class="p-3 text-sm text-slate-500 font-mono"><?= $no++ ?></td>
-                        <td class="p-3 text-sm font-semibold text-slate-800"><?= htmlspecialchars($item['nama']) ?></td>
-                        <td class="p-3">
-                            <span class="text-xs bg-slate-100 px-2 py-1 text-slate-600 border border-slate-200"><?= htmlspecialchars($item['kota']) ?></span>
-                        </td>
-                        <td class="p-3 text-xs text-slate-400 font-mono"><?= $item['tanggal'] ?></td>
+                        <td class="p-3 text-center text-sm font-bold text-gray-700"><?= $no++ ?></td>
+                        <td class="p-3 text-sm font-medium text-gray-900"><?= htmlspecialchars($item['nama']) ?></td>
+                        <td class="p-3 text-sm text-center text-gray-600"><?= htmlspecialchars($item['kota']) ?></td>
+                        <td class="p-3 text-xs text-gray-400 font-mono"><?= $item['tanggal'] ?></td>
                     </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>

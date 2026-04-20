@@ -7,23 +7,23 @@
 //         - Menampilkan sidebar navigasi
 //         - Menampilkan header dan footer
 //         - Meload konten halaman dinamis dari folder pages/
-//         - Handler export CSV/TXT (harus sebelum output HTML!)
+//         - Handler export CSV (harus sebelum output HTML!)
 // SISTEM: Rental Mobil UKK WheelFlow
 // DEPENDENSI: TailwindCSS CDN, Google Fonts (Inter), Lucide Icons
 // =============================================================================
 
 // ==========================================================================
-// TOMBOL EXPORT CSV & TXT
+// TOMBOL EXPORT CSV
 // Fungsi: Mengarahkan ke handler export di main.php dengan parameter action
-// URL: ?page=history&action=export_csv atau ?page=history&action=export_txt
+// URL: ?page=history&action=export_csv
 // Styling: TailwindCSS dengan icon SVG
 // ==========================================================================
 
 // =============================================================================
-// HANDLER: Proses EXPORT CSV dan TXT
-// Method: GET dengan parameter page=history&action=export_csv/export_txt
+// HANDLER: Proses EXPORT CSV
+// Method: GET dengan parameter page=history&action=export_csv
 // Lokasi: Paling atas file (sebelum <!DOCTYPE html>)
-// Fungsi: Download data peminjam sebagai file CSV atau TXT
+// Fungsi: Download data peminjam sebagai file CSV
 // Alasan: Header download harus dikirim sebelum output HTML apapun
 // =============================================================================
 if (isset($_GET['page']) && $_GET['page'] === 'history' && isset($_GET['action'])) {
@@ -46,35 +46,6 @@ if (isset($_GET['page']) && $_GET['page'] === 'history' && isset($_GET['action']
             fputcsv($output, [$no++, $row['nama'], $nik_text, $row['alamat'], $row['kota'], $hp_text, $row['pekerjaan'], $row['tanggal']]);
         }
         fclose($output);
-        exit;
-    }
-    
-    // Export TXT
-    if ($_GET['action'] === 'export_txt') {
-        $data = ambilSemuaData();
-        header('Content-Type: text/plain; charset=utf-8');
-        header('Content-Disposition: attachment; filename="data_peminjam_' . date('Y-m-d') . '.txt"');
-        $content = "================================================================================\n";
-        $content .= "                         DATA PEMINJAM RENTAL MOBIL\n";
-        $content .= "                         Export Tanggal: " . date('d/m/Y H:i:s') . "\n";
-        $content .= "================================================================================\n\n";
-        $no = 1;
-        foreach ($data as $row) {
-            $content .= "--------------------------------------------------------------------------------\n";
-            $content .= "No.         : " . $no++ . "\n";
-            $content .= "Nama        : " . $row['nama'] . "\n";
-            $content .= "NIK         : " . $row['nik'] . "\n";
-            $content .= "Alamat      : " . $row['alamat'] . "\n";
-            $content .= "Kota        : " . $row['kota'] . "\n";
-            $content .= "No. HP      : " . $row['hp'] . "\n";
-            $content .= "Pekerjaan   : " . $row['pekerjaan'] . "\n";
-            $content .= "Tgl Register: " . $row['tanggal'] . "\n";
-            $content .= "--------------------------------------------------------------------------------\n\n";
-        }
-        $content .= "================================================================================\n";
-        $content .= "Total Data: " . count($data) . " peminjam\n";
-        $content .= "================================================================================\n";
-        echo $content;
         exit;
     }
 }
@@ -158,10 +129,6 @@ if (isset($_GET['page']) && $_GET['page'] === 'history' && isset($_GET['action']
 
                 <div class="hidden md:block">
                     <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Sistem Informasi Rental Mobil</h2>
-                </div>
-
-                <div class="flex items-center gap-4 text-sm text-slate-500 font-medium">
-                    <span class="hidden sm:inline-block bg-slate-50 px-3 py-1 rounded-none border border-slate-200 text-[11px] font-bold"><?= date('l, d F Y') ?></span>
                 </div>
             </header>
 
